@@ -66,3 +66,22 @@ async function deleteVak(id) {
         console.error("Fout bij verwijderen:", err);
     }
 }
+
+function displayVakken(vakken) {
+    let lijst = document.querySelector("#vakList");
+    lijst.innerHTML = ""; // Maak eerst alles leeg
+
+    // Loop over alle vakken
+    vakken.forEach(vak => {
+        let li = document.createElement("li");
+        li.textContent = vak.naam;
+
+        // ❌ knopje maken
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "❌";
+        deleteBtn.addEventListener("click", () => deleteVak(vak.id));
+
+        li.appendChild(deleteBtn);
+        lijst.appendChild(li);
+    });
+}
